@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>H5页面基础搭建</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="author" content="">
+	<meta name="description" content="">
+	<meta name="publishinfo" content="">
+	<link type="text/css" href="mobile.css"/>
+	<script>
+		//rem控制
+		document.documentElement.style.fontSize = (document.documentElement.clientWidth < 500 ? document.documentElement.clientWidth : 500)/7.5 +"px";
+		//orientationchange、resize
+		window.addEventListener('resize',function(){
+			document.documentElement.style.fontSize = (document.documentElement.clientWidth < 500 ? document.documentElement.clientWidth : 500)/7.5 +"px";
+		});
+		//触发ios设备的active
+		document.addEventListener("touchstart",function(){},false);
+	</script>
+</head>
+<body>
+<div class="page_ch" ></div>
+</body>
+<!--横屏提示-->
+<div class="orientation-prompt" style="display:none;" id="orientation-prompt">
+	<div class="orientation-prompt-main">
+		<img class="orientation-phone phone-animation" src="http://n.sinaimg.cn/games/779860c8/20170720/ico-land.png">
+		<p class="orientation-prompt-txt">为了更好的体验，请使用竖屏浏览</p>
+	</div>
+</div>
+<script>
+	(function(){
+		if(!isPc()){
+			document.querySelector("body").classList.add("orientation-Mobile");
+		}
+		function isPc(){
+			var ua = navigator.userAgent.toLowerCase(),
+					agents = ["android","iphone","symbianos","windows phone","ipod","ipad"],
+					res = true;
+			agents.forEach(function(value){
+				if(ua.indexOf(value) > -1){
+					res = false;
+				}
+			});
+			return res;
+		}
+	}());
+</script>
+</html>
